@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="content">
+      content将内容部分的底部外边距设为负数这是个比较主流的用法，把内容部分最小高度设为100%，
+      再利用内容部分的负底部外边距值来达到当高度不满时，页脚保持在窗口底部，当高度超出则随之推出的效果。
+    </div>
+    <div class="footer">footer</div>
+  </div>
+</body>
+</html>
+<style>
+  html,body {
+    height: 100%;
+    margin: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+  }
+
+  .footer{
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+  }
+</style>
