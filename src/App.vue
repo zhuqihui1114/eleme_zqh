@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <v-header :seller="seller"></v-header>
     <div class="tab">
       <div class="tab-item">
         <router-link to="/goods" tag="a" active-class="active">
@@ -22,8 +23,31 @@
 </template>
 
 <script>
+import header from './components/header/header.vue'
+import { getSellerApi } from './api/seller'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'v-header': header
+  },
+  data () {
+    return {
+      seller: {}
+    }
+  },
+  created () {
+    this.seller = this.getSeller()
+  },
+  methods: {
+    getSeller () {
+      getSellerApi().then((res) => {
+        if (res.errno === 0) {
+          this.seller = res.data
+        }
+      })
+    }
+  }
 }
 </script>
 
