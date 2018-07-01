@@ -31,16 +31,17 @@ export default {
   components: {
     'v-header': header
   },
-  data () {
+  data() {
     return {
-      seller: {}
+      seller: {
+      }
     }
   },
-  created () {
-    this.seller = this.getSeller()
+  created() {
+    this.getSeller()
   },
   methods: {
-    getSeller () {
+    getSeller() {
       getSellerApi().then((res) => {
         if (res.errno === 0) {
           this.seller = res.data

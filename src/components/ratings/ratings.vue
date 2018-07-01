@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'ratings',
-  data () {
+  data() {
     return {
       msg: 'Welcome to Your Vue.js App'
     }

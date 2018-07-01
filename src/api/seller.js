@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export function getSellerApi () {
+export function getSellerApi() {
   const url = '/api/seller'
 
   return axios.get(url, {}).then((res) => {
