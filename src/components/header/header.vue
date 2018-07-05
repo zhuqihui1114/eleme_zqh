@@ -23,8 +23,7 @@
       </div>
     </div>
     <div class="bulletin-wrapper" @click="showDetail">
-      <span class="bulletin-title"></span>
-      <span class="bulletin-text">{{seller.bulletin}}</span>
+      <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
       <i class="icon-keyboard_arrow_right"></i>
     </div>
     <div class="background">
@@ -127,11 +126,13 @@ export default {
         border-radius: 14px
         background: rgba(0, 0, 0, 0.2)
         .count
+          vertical-align: top
           line-height: 24px
           font-size : 10px
         .icon-keyboard_arrow_right
           margin-left: 2px
           font-size : 10px
+          line-height: 24px
     .bulletin-wrapper
       position: relative
       height : 28px
@@ -151,6 +152,7 @@ export default {
         background-size: 22px 12px
         background-repeat: no-repeat
       .bulletin-text
+        vertical-align: top
         margin : 0 4px
         font-size : 10px
       .icon-keyboard_arrow_right
