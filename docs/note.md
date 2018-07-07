@@ -51,6 +51,14 @@
     2、在detail-wrapper类下面添加 display: inline-block，这样可以清除detail-main上margin属性对文档流后面元素的影响（类似于清除浮动）
 ```
 
+### 4、文字和图标水平排列不整齐问题
+  文字默认会有上下padding，导致水平排列不整齐
+
+```
+解决方式
+1、设置 vertical-align: top 后，再设置 line-height: 28px 上下居中即可
+```
+
 ## 经验
 ```
   1、编写css时，影响页面布局、重绘的属性写前面，可以继承的元素写后面。
