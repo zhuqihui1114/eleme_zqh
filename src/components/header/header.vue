@@ -33,6 +33,9 @@
       <div class="detail-wrapper">
         <div class="detail-main">
           <h1 class="name">{{seller.name}}</h1>
+          <div class="star-wrapper">
+            <star :size="48" :score="seller.score"></star>
+          </div>
           <div class="title">
             <div class="line"></div>
             <div class="text">优惠信息</div>
@@ -62,6 +65,8 @@
 </template>
 
 <script>
+import star from '../star/star'
+
 export default {
   props: {
     seller: {
@@ -81,6 +86,9 @@ export default {
     hideDetail() {
       this.detailShow = false
     }
+  },
+  components: {
+    star
   }
 }
 </script>
@@ -204,6 +212,7 @@ export default {
       left : 0
       width : 100%
       height : 100%
+      overflow: auto
       backdrop-filter: blur(10px)
       background : rgba(7, 17, 27, 0.8)
       .detail-wrapper
@@ -217,6 +226,10 @@ export default {
             text-align: center
             font-size: 16px
             font-weight: 700
+          .star-wrapper
+            margin-top: 18px
+            padding: 2px 0
+            text-align: center
           .title
             display: flex
             width: 80%
