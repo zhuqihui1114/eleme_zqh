@@ -49,12 +49,36 @@ npm 删除模块
 【npm uninstall -g xxx】删除全局模块xxx；
 ```
 
-### 3、Vue文件源码隐藏设置
+### 4、Vue文件源码隐藏设置
 ```
 webpack+vue 2.0打包发布之后，将发布的文件部署到服务器中之后，浏览器中访问的时候会出现一个webpack文件夹，里边会显示vue文件源码
 如果不想让vue源文件显示出来，可以在config/index.js 中 build 下的 productionSourceMap: true, 改为 productionSourceMap: false, 即可
 ```
 
+### 5、详情弹层页需要清除浮动的问题
+
+  原代码中：设置了最小高度为100%，并且又设置了margin-top，导致关闭按钮被挤到下面看不到的地方，且没有出现滚动条。
+```
+  .detail-wrapper
+    width : 100%
+    min-height : 100%
+    .detail-main
+      margin-top : 64px
+      padding-bottom : 64px
+```
+  解决方法：
+```
+    1、将detail-main类下面的margin-top样式属性换成：padding-top 即可
+    2、在detail-wrapper类下面添加 display: inline-block，这样可以清除detail-main上margin属性对文档流后面元素的影响（类似于清除浮动）
+```
+
+### 6、文字和图标水平排列不整齐问题
+  文字默认会有上下padding，导致水平排列不整齐
+
+```
+解决方式
+1、设置 vertical-align: top 后，再设置 line-height: 28px 上下居中即可
+```
 
 ## 经验
 ```
