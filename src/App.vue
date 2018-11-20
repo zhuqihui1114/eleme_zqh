@@ -2,52 +2,29 @@
   <div id="app">
     <v-header :seller="seller"></v-header>
     <div class="tab-wrapper">
-      <div class="tab">
-        <cube-tab-bar
-          v-model="selectedLabel"
-          :showSlider=true
-          :useTransition=true
-          :data="tabs"
-          ref="tabBar"
-          class="border-bottom-1px"
-        >
-        </cube-tab-bar>
-      </div>
+      <tab :tabs="tabs"></tab>
     </div>
   </div>
 </template>
 
 <script>
-import header from './components/header/header.vue'
+import qs from 'query-string'
+import { getSeller } from './api'
+import VHeader from './components/header/header'
 import Goods from './components/goods/goods'
 import Ratings from './components/ratings/ratings'
 import Seller from './components/seller/seller'
-
-import { getSellerApi } from './api/seller'
+import Tab from './components/tab/tab'
 
 export default {
-  name: 'App',
-  components: {
-    'v-header': header
-  },
   data() {
     return {
-      index: 0,
       seller: {
+        id: qs.parse(location.search).id
       }
     }
   },
   computed: {
-    selectedLabel: {
-      get() {
-        return this.tabs[this.index].label
-      },
-      set(newVal) {
-        this.index = this.tabs.findIndex((value) => {
-          return value.label === newVal
-        })
-      }
-    },
     tabs() {
       return [
         {
@@ -75,23 +52,25 @@ export default {
     }
   },
   created() {
-    this.getSeller()
+    this._getSeller()
   },
   methods: {
-    getSeller() {
-      getSellerApi().then((res) => {
-        if (res.errno === 0) {
-          this.seller = res.data
-        }
+    _getSeller() {
+      getSeller({
+        id: this.seller.id
+      }).then((seller) => {
+        this.seller = Object.assign({}, this.seller, seller)
       })
     }
+  },
+  components: {
+    Tab,
+    VHeader
   }
 }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-  @import "./common/stylus/mixin.styl"
-
+<style lang="stylus" scoped>
   #app
     .tab-wrapper
       position: fixed
@@ -99,13 +78,4 @@ export default {
       left: 0
       right: 0
       bottom: 0
-      .tab
-        display: flex
-        flex-direction: column
-        height: 100%
-        >>> .cube-tab
-          padding: 10px 0
-        .slide-wrapper
-          flex: 1
-          overflow: hidden
 </style>

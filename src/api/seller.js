@@ -7,3 +7,11 @@ export function getSellerApi() {
     return Promise.resolve(res.data)
   })
 }
+
+export function getGoodsApi() {
+  const url = '/api/goods'
+
+  return axios.get(url, {}).then((res) => {
+    return Promise.resolve(res.data)
+  })
+}

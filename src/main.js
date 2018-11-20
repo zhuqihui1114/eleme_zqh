@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import './cube-ui'
-// import './register'
+import './register'
 
 import './common/stylus/index.styl'
 

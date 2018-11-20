@@ -1,10 +1,10 @@
 <template>
   <div class="star" :class="starType">
-    <span v-for="(itemClass, index) in itemClasses" :class="itemClass" class="star-item" :key="index"></span>
+    <span v-for="(itemClass,index) in itemClasses" :class="itemClass" class="star-item" :key="index"></span>
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 const LENGTH = 5
 const CLS_ON = 'on'
 const CLS_HALF = 'half'
@@ -25,9 +25,9 @@ export default {
     },
     itemClasses() {
       let result = []
-      let score = Math.floor(this.score * 2) / 2
-      let hasDecimal = score % 1 !== 0
-      let integer = Math.floor(score)
+      const score = Math.floor(this.score * 2) / 2
+      const hasDecimal = score % 1 !== 0
+      const integer = Math.floor(score)
       for (let i = 0; i < integer; i++) {
         result.push(CLS_ON)
       }
@@ -47,9 +47,10 @@ export default {
   @import "../../common/stylus/mixin.styl"
 
   .star
-    font-size: 0
+    display: flex
+    align-items: center
+    justify-content: center
     .star-item
-      display: inline-block
       background-repeat: no-repeat
     &.star-48
       .star-item
